@@ -5765,7 +5765,7 @@ class GhosttyNSView: NSView, NSUserInterfaceValidations {
         // Japanese/Chinese IME: Enter only confirms the conversion; a second Enter executes.
         // Only send the extra Return key for Korean input sources.
         guard let sourceId = KeyboardLayout.id else { return false }
-        return sourceId.contains("Korean") || sourceId.contains("korean")
+        return sourceId.range(of: "korean", options: .caseInsensitive) != nil
     }
 
     private func ghosttyKeyEvent(for event: NSEvent, surface: ghostty_surface_t) -> ghostty_input_key_s {
